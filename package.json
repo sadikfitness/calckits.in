@@ -1,0 +1,33 @@
+{
+  "name": "calckit",
+  "version": "1.0.0",
+  "description": "All-in-One Calculator for Finance, Health, Education, Business & Daily Life",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [
+    "calculator",
+    "emi",
+    "gst",
+    "bmi",
+    "sip",
+    "finance",
+    "health",
+    "education",
+    "business",
+    "indian"
+  ],
+  "author": "CalcKit Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/calckit.git"
+  },
+  "homepage": "https://calckit.netlify.app",
+  "devDependencies": {},
+  "dependencies": {}
+}
+

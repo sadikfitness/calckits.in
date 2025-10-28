@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CalcKit - Free All-in-One Calculator for Indian users. Calculate EMI, GST, BMI, SIP, and 20+ calculators instantly. No login required!">
+    <meta name="keywords" content="calculator, EMI calculator, GST calculator, BMI calculator, SIP calculator, Indian calculator">
+    <meta name="author" content="CalcKit">
+    <meta property="og:title" content="CalcKit - All-in-One Calculator for India">
+    <meta property="og:description" content="Free calculators for Finance, Health, Education, Business & Daily Life. Fast, Mobile-friendly & Works Offline!">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#2563eb">
+    
+    <title>CalcKit - All-in-One Calculator | EMI, GST, BMI & More</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CalcKit",
+      "description": "All-in-One Calculator for Finance, Health, Education, Business & Daily Life",
+      "url": "https://calckits.in",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                        <path d="M10 12h12M10 16h12M10 20h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                                <stop offset="0%" stop-color="#2563eb"/>
+                                <stop offset="100%" stop-color="#1e40af"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">CalcKit</span>
+                </div>
+                
+                <div class="search-container">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12.5 12.5L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search calculators...">
+                </div>
+                
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Ad Space -->
+        <div class="ad-space header-ad">
+            <div class="ad-placeholder">Advertisement</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Category Tabs -->
+            <nav class="tabs">
+                <button class="tab-btn active" data-category="finance">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 5h16M2 10h16M2 15h10" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Finance
+                </button>
+                <button class="tab-btn" data-category="education">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L2 6l8 4 8-4-8-4zM2 14l8 4 8-4" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Education
+                </button>
+                <button class="tab-btn" data-category="health">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 18s-8-5.5-8-10a4 4 0 018 0 4 4 0 018 0c0 4.5-8 10-8 10z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Health
+                </button>
+                <button class="tab-btn" data-category="business">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="3" y="3" width="14" height="14" stroke="currentColor" stroke-width="2"/>
+                        <path d="M3 8h14M8 3v14" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Business
+                </button>
+                <button class="tab-btn" data-category="daily">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="M10 6v4l3 2" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Daily Life
+                </button>
+            </nav>
+
+            <!-- Calculator Grid -->
+            <div class="calculator-grid">
+                <!-- Sidebar for Ads -->
+                <aside class="sidebar">
+                    <div class="ad-space sidebar-ad">
+                        <div class="ad-placeholder">
+                            <p>💳 Best Credit Cards</p>
+                            <small>Affiliate Space</small>
+                        </div>
+                    </div>
+                    <div class="ad-space sidebar-ad">
+                        <div class="ad-placeholder">
+                            <p>🏦 Personal Loans</p>
+                            <small>Affiliate Space</small>
+                        </div>
+                    </div>
+                    <div class="ad-space sidebar-ad">
+                        <div class="ad-placeholder">
+                            <p>🛡️ Insurance Plans</p>
+                            <small>Affiliate Space</small>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Calculator Area -->
+                <div class="calculator-area">
+                    <!-- FINANCE CALCULATORS -->
+                    <section class="category-section active" data-category="finance">
+                        <h2 class="category-title">💰 Finance Calculators</h2>
+                        
+                        <!-- EMI Calculator -->
+                        <div class="calculator-card" data-calculator="emi">
+                            <h3 class="calc-title">EMI Calculator</h3>
+                            <p class="calc-description">Calculate your monthly loan installments</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Loan Amount (₹)</label>
+                                    <input type="number" id="emi-principal" placeholder="500000" value="500000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Interest Rate (% per annum)</label>
+                                    <input type="number" id="emi-rate" placeholder="8.5" value="8.5" step="0.1">
+                                </div>
+                                <div class="input-group">
+                                    <label>Loan Tenure (Years)</label>
+                                    <input type="number" id="emi-tenure" placeholder="10" value="10">
+                                </div>
+                                <button class="calc-btn" onclick="calculateEMI()">Calculate EMI</button>
+                            </div>
+                            
+                            <div class="result-section" id="emi-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Monthly EMI</h4>
+                                    <p class="result-value" id="emi-monthly">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Interest</h4>
+                                    <p class="result-value" id="emi-interest">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Amount</h4>
+                                    <p class="result-value" id="emi-total">₹0</p>
+                                </div>
+                                <canvas id="emi-chart"></canvas>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('emi')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('emi')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('sip')">SIP</a>
+                                <a href="#" onclick="switchCalculator('fd')">FD</a>
+                            </div>
+                        </div>
+
+                        <!-- GST Calculator -->
+                        <div class="calculator-card" data-calculator="gst">
+                            <h3 class="calc-title">GST Calculator</h3>
+                            <p class="calc-description">Calculate GST inclusive and exclusive amounts</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Amount (₹)</label>
+                                    <input type="number" id="gst-amount" placeholder="10000" value="10000">
+                                </div>
+                                <div class="input-group">
+                                    <label>GST Rate (%)</label>
+                                    <select id="gst-rate">
+                                        <option value="5">5%</option>
+                                        <option value="12">12%</option>
+                                        <option value="18" selected>18%</option>
+                                        <option value="28">28%</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Type</label>
+                                    <select id="gst-type">
+                                        <option value="exclusive">Exclusive (Add GST)</option>
+                                        <option value="inclusive">Inclusive (Remove GST)</option>
+                                    </select>
+                                </div>
+                                <button class="calc-btn" onclick="calculateGST()">Calculate GST</button>
+                            </div>
+                            
+                            <div class="result-section" id="gst-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>GST Amount</h4>
+                                    <p class="result-value" id="gst-amount-result">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>CGST (50%)</h4>
+                                    <p class="result-value" id="gst-cgst">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>SGST (50%)</h4>
+                                    <p class="result-value" id="gst-sgst">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Amount</h4>
+                                    <p class="result-value" id="gst-total">₹0</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('gst')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('gst')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('profit')">Profit</a>
+                                <a href="#" onclick="switchCalculator('discount')">Discount</a>
+                            </div>
+                        </div>
+
+                        <!-- FD Calculator -->
+                        <div class="calculator-card" data-calculator="fd">
+                            <h3 class="calc-title">FD Calculator</h3>
+                            <p class="calc-description">Calculate Fixed Deposit maturity amount</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Principal Amount (₹)</label>
+                                    <input type="number" id="fd-principal" placeholder="100000" value="100000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Interest Rate (% per annum)</label>
+                                    <input type="number" id="fd-rate" placeholder="6.5" value="6.5" step="0.1">
+                                </div>
+                                <div class="input-group">
+                                    <label>Time Period (Years)</label>
+                                    <input type="number" id="fd-tenure" placeholder="5" value="5">
+                                </div>
+                                <button class="calc-btn" onclick="calculateFD()">Calculate FD</button>
+                            </div>
+                            
+                            <div class="result-section" id="fd-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Maturity Amount</h4>
+                                    <p class="result-value" id="fd-maturity">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Interest</h4>
+                                    <p class="result-value" id="fd-interest">₹0</p>
+                                </div>
+                                <canvas id="fd-chart"></canvas>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('fd')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('fd')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('sip')">SIP</a>
+                                <a href="#" onclick="switchCalculator('compound')">Compound Interest</a>
+                            </div>
+                        </div>
+
+                        <!-- SIP Calculator -->
+                        <div class="calculator-card" data-calculator="sip">
+                            <h3 class="calc-title">SIP Calculator</h3>
+                            <p class="calc-description">Calculate Systematic Investment Plan returns</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Monthly Investment (₹)</label>
+                                    <input type="number" id="sip-monthly" placeholder="5000" value="5000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Expected Return (% per annum)</label>
+                                    <input type="number" id="sip-rate" placeholder="12" value="12" step="0.1">
+                                </div>
+                                <div class="input-group">
+                                    <label>Investment Period (Years)</label>
+                                    <input type="number" id="sip-tenure" placeholder="10" value="10">
+                                </div>
+                                <button class="calc-btn" onclick="calculateSIP()">Calculate SIP</button>
+                            </div>
+                            
+                            <div class="result-section" id="sip-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Maturity Value</h4>
+                                    <p class="result-value" id="sip-maturity">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Investment</h4>
+                                    <p class="result-value" id="sip-invested">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Returns</h4>
+                                    <p class="result-value" id="sip-returns">₹0</p>
+                                </div>
+                                <canvas id="sip-chart"></canvas>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('sip')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('sip')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('fd')">FD</a>
+                                <a href="#" onclick="switchCalculator('retirement')">Retirement</a>
+                            </div>
+                        </div>
+
+                        <!-- Currency Converter -->
+                        <div class="calculator-card" data-calculator="currency">
+                            <h3 class="calc-title">Currency Converter</h3>
+                            <p class="calc-description">Convert currencies with live rates</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Amount</label>
+                                    <input type="number" id="currency-amount" placeholder="1000" value="1000">
+                                </div>
+                                <div class="input-group">
+                                    <label>From</label>
+                                    <select id="currency-from">
+                                        <option value="INR" selected>INR (₹)</option>
+                                        <option value="USD">USD ($)</option>
+                                        <option value="EUR">EUR (€)</option>
+                                        <option value="GBP">GBP (£)</option>
+                                        <option value="AED">AED</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>To</label>
+                                    <select id="currency-to">
+                                        <option value="INR">INR (₹)</option>
+                                        <option value="USD" selected>USD ($)</option>
+                                        <option value="EUR">EUR (€)</option>
+                                        <option value="GBP">GBP (£)</option>
+                                        <option value="AED">AED</option>
+                                    </select>
+                                </div>
+                                <button class="calc-btn" onclick="calculateCurrency()">Convert</button>
+                            </div>
+                            
+                            <div class="result-section" id="currency-result" style="display:none;">
+                                <div class="result-card full-width">
+                                    <h4>Converted Amount</h4>
+                                    <p class="result-value" id="currency-converted">0</p>
+                                    <small id="currency-rate">Exchange rate: 1 = 0</small>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('currency')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('currency')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('gst')">GST</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- EDUCATION CALCULATORS -->
+                    <section class="category-section" data-category="education">
+                        <h2 class="category-title">📚 Education Calculators</h2>
+                        
+                        <!-- Percentage Calculator -->
+                        <div class="calculator-card" data-calculator="percentage">
+                            <h3 class="calc-title">Percentage Calculator</h3>
+                            <p class="calc-description">Calculate percentage, increase, and decrease</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>What is</label>
+                                    <input type="number" id="percent-value" placeholder="25" value="25">
+                                </div>
+                                <div class="input-group">
+                                    <label>% of</label>
+                                    <input type="number" id="percent-total" placeholder="200" value="200">
+                                </div>
+                                <button class="calc-btn" onclick="calculatePercentage()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="percentage-result" style="display:none;">
+                                <div class="result-card full-width">
+                                    <h4>Result</h4>
+                                    <p class="result-value" id="percentage-answer">0</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('percentage')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('percentage')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('gpa')">GPA</a>
+                                <a href="#" onclick="switchCalculator('discount')">Discount</a>
+                            </div>
+                        </div>
+
+                        <!-- Age Calculator -->
+                        <div class="calculator-card" data-calculator="age">
+                            <h3 class="calc-title">Age Calculator</h3>
+                            <p class="calc-description">Calculate age and days until next birthday</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Date of Birth</label>
+                                    <input type="date" id="age-dob" value="1990-01-01">
+                                </div>
+                                <button class="calc-btn" onclick="calculateAge()">Calculate Age</button>
+                            </div>
+                            
+                            <div class="result-section" id="age-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Age</h4>
+                                    <p class="result-value" id="age-years">0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Days</h4>
+                                    <p class="result-value" id="age-days">0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Next Birthday</h4>
+                                    <p class="result-value" id="age-next">0 days</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('age')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('age')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('pregnancy')">Pregnancy</a>
+                            </div>
+                        </div>
+
+                        <!-- GPA Calculator -->
+                        <div class="calculator-card" data-calculator="gpa">
+                            <h3 class="calc-title">GPA Calculator</h3>
+                            <p class="calc-description">Calculate your Grade Point Average</p>
+                            
+                            <div class="calc-form">
+                                <div id="gpa-subjects">
+                                    <div class="gpa-subject">
+                                        <input type="text" placeholder="Subject" class="gpa-subject-name">
+                                        <input type="number" placeholder="Credits" class="gpa-credits" min="1" max="10" value="3">
+                                        <select class="gpa-grade">
+                                            <option value="10">A+ (10)</option>
+                                            <option value="9">A (9)</option>
+                                            <option value="8">B+ (8)</option>
+                                            <option value="7">B (7)</option>
+                                            <option value="6">C (6)</option>
+                                            <option value="5">D (5)</option>
+                                            <option value="0">F (0)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="add-btn" onclick="addGPASubject()">+ Add Subject</button>
+                                <button class="calc-btn" onclick="calculateGPA()">Calculate GPA</button>
+                            </div>
+                            
+                            <div class="result-section" id="gpa-result" style="display:none;">
+                                <div class="result-card full-width">
+                                    <h4>Your GPA</h4>
+                                    <p class="result-value" id="gpa-value">0.00</p>
+                                    <small id="gpa-total-credits">Total Credits: 0</small>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('gpa')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('gpa')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('percentage')">Percentage</a>
+                            </div>
+                        </div>
+
+                        <!-- Compound Interest Calculator -->
+                        <div class="calculator-card" data-calculator="compound">
+                            <h3 class="calc-title">Compound Interest Calculator</h3>
+                            <p class="calc-description">Calculate compound interest returns</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Principal Amount (₹)</label>
+                                    <input type="number" id="compound-principal" placeholder="10000" value="10000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Annual Interest Rate (%)</label>
+                                    <input type="number" id="compound-rate" placeholder="5" value="5" step="0.1">
+                                </div>
+                                <div class="input-group">
+                                    <label>Time Period (Years)</label>
+                                    <input type="number" id="compound-time" placeholder="5" value="5">
+                                </div>
+                                <div class="input-group">
+                                    <label>Compound Frequency</label>
+                                    <select id="compound-frequency">
+                                        <option value="1">Annually</option>
+                                        <option value="2">Semi-annually</option>
+                                        <option value="4" selected>Quarterly</option>
+                                        <option value="12">Monthly</option>
+                                        <option value="365">Daily</option>
+                                    </select>
+                                </div>
+                                <button class="calc-btn" onclick="calculateCompound()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="compound-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Final Amount</h4>
+                                    <p class="result-value" id="compound-final">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Interest</h4>
+                                    <p class="result-value" id="compound-interest">₹0</p>
+                                </div>
+                                <canvas id="compound-chart"></canvas>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('compound')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('compound')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('fd')">FD</a>
+                                <a href="#" onclick="switchCalculator('sip')">SIP</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- HEALTH CALCULATORS -->
+                    <section class="category-section" data-category="health">
+                        <h2 class="category-title">❤️ Health Calculators</h2>
+                        
+                        <!-- BMI Calculator -->
+                        <div class="calculator-card" data-calculator="bmi">
+                            <h3 class="calc-title">BMI Calculator</h3>
+                            <p class="calc-description">Calculate your Body Mass Index</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="bmi-weight" placeholder="70" value="70">
+                                </div>
+                                <div class="input-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" id="bmi-height" placeholder="170" value="170">
+                                </div>
+                                <button class="calc-btn" onclick="calculateBMI()">Calculate BMI</button>
+                            </div>
+                            
+                            <div class="result-section" id="bmi-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Your BMI</h4>
+                                    <p class="result-value" id="bmi-value">0</p>
+                                </div>
+                                <div class="result-card full-width">
+                                    <h4>Category</h4>
+                                    <p class="result-value" id="bmi-category">Normal</p>
+                                    <small id="bmi-range">Healthy BMI range: 18.5 - 24.9</small>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('bmi')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('bmi')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('bmr')">BMR</a>
+                                <a href="#" onclick="switchCalculator('calorie')">Calorie</a>
+                            </div>
+                        </div>
+
+                        <!-- BMR Calculator -->
+                        <div class="calculator-card" data-calculator="bmr">
+                            <h3 class="calc-title">BMR Calculator</h3>
+                            <p class="calc-description">Calculate Basal Metabolic Rate</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Gender</label>
+                                    <select id="bmr-gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Age (years)</label>
+                                    <input type="number" id="bmr-age" placeholder="30" value="30">
+                                </div>
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="bmr-weight" placeholder="70" value="70">
+                                </div>
+                                <div class="input-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" id="bmr-height" placeholder="170" value="170">
+                                </div>
+                                <button class="calc-btn" onclick="calculateBMR()">Calculate BMR</button>
+                            </div>
+                            
+                            <div class="result-section" id="bmr-result" style="display:none;">
+                                <div class="result-card full-width">
+                                    <h4>Your BMR</h4>
+                                    <p class="result-value" id="bmr-value">0 calories/day</p>
+                                    <small>Calories burned at rest</small>
+                                </div>
+                                <div class="activity-levels">
+                                    <h4>Daily Calorie Needs</h4>
+                                    <div id="bmr-activity"></div>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('bmr')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('bmr')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('bmi')">BMI</a>
+                                <a href="#" onclick="switchCalculator('calorie')">Calorie</a>
+                            </div>
+                        </div>
+
+                        <!-- Pregnancy Calculator -->
+                        <div class="calculator-card" data-calculator="pregnancy">
+                            <h3 class="calc-title">Pregnancy Calculator</h3>
+                            <p class="calc-description">Calculate due date and pregnancy timeline</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Last Menstrual Period (LMP)</label>
+                                    <input type="date" id="pregnancy-lmp">
+                                </div>
+                                <button class="calc-btn" onclick="calculatePregnancy()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="pregnancy-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Due Date</h4>
+                                    <p class="result-value" id="pregnancy-due">-</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Current Week</h4>
+                                    <p class="result-value" id="pregnancy-week">0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Days Remaining</h4>
+                                    <p class="result-value" id="pregnancy-days">0</p>
+                                </div>
+                                <div class="result-card full-width">
+                                    <h4>Trimester</h4>
+                                    <p class="result-value" id="pregnancy-trimester">-</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('pregnancy')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('pregnancy')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('age')">Age</a>
+                            </div>
+                        </div>
+
+                        <!-- Calorie Calculator -->
+                        <div class="calculator-card" data-calculator="calorie">
+                            <h3 class="calc-title">Calorie Calculator</h3>
+                            <p class="calc-description">Calculate daily calorie needs for weight goals</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Gender</label>
+                                    <select id="calorie-gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Age (years)</label>
+                                    <input type="number" id="calorie-age" placeholder="30" value="30">
+                                </div>
+                                <div class="input-group">
+                                    <label>Weight (kg)</label>
+                                    <input type="number" id="calorie-weight" placeholder="70" value="70">
+                                </div>
+                                <div class="input-group">
+                                    <label>Height (cm)</label>
+                                    <input type="number" id="calorie-height" placeholder="170" value="170">
+                                </div>
+                                <div class="input-group">
+                                    <label>Activity Level</label>
+                                    <select id="calorie-activity">
+                                        <option value="1.2">Sedentary (little/no exercise)</option>
+                                        <option value="1.375">Lightly active (1-3 days/week)</option>
+                                        <option value="1.55" selected>Moderately active (3-5 days/week)</option>
+                                        <option value="1.725">Very active (6-7 days/week)</option>
+                                        <option value="1.9">Extra active (athlete)</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Goal</label>
+                                    <select id="calorie-goal">
+                                        <option value="lose">Lose Weight (-500 cal/day)</option>
+                                        <option value="maintain" selected>Maintain Weight</option>
+                                        <option value="gain">Gain Weight (+500 cal/day)</option>
+                                    </select>
+                                </div>
+                                <button class="calc-btn" onclick="calculateCalorie()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="calorie-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Daily Calories</h4>
+                                    <p class="result-value" id="calorie-daily">0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Weekly Weight Change</h4>
+                                    <p class="result-value" id="calorie-change">0 kg</p>
+                                </div>
+                                <canvas id="calorie-chart"></canvas>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('calorie')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('calorie')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('bmi')">BMI</a>
+                                <a href="#" onclick="switchCalculator('bmr')">BMR</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- BUSINESS CALCULATORS -->
+                    <section class="category-section" data-category="business">
+                        <h2 class="category-title">💼 Business Calculators</h2>
+                        
+                        <!-- Profit Calculator -->
+                        <div class="calculator-card" data-calculator="profit">
+                            <h3 class="calc-title">Profit Calculator</h3>
+                            <p class="calc-description">Calculate profit margin and markup</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Cost Price (₹)</label>
+                                    <input type="number" id="profit-cost" placeholder="1000" value="1000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Selling Price (₹)</label>
+                                    <input type="number" id="profit-selling" placeholder="1500" value="1500">
+                                </div>
+                                <button class="calc-btn" onclick="calculateProfit()">Calculate Profit</button>
+                            </div>
+                            
+                            <div class="result-section" id="profit-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Profit Amount</h4>
+                                    <p class="result-value" id="profit-amount">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Profit Margin</h4>
+                                    <p class="result-value" id="profit-margin">0%</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Markup</h4>
+                                    <p class="result-value" id="profit-markup">0%</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('profit')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('profit')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('gst')">GST</a>
+                                <a href="#" onclick="switchCalculator('roi')">ROI</a>
+                            </div>
+                        </div>
+
+                        <!-- ROI Calculator -->
+                        <div class="calculator-card" data-calculator="roi">
+                            <h3 class="calc-title">ROI Calculator</h3>
+                            <p class="calc-description">Calculate Return on Investment</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Initial Investment (₹)</label>
+                                    <input type="number" id="roi-initial" placeholder="100000" value="100000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Final Value (₹)</label>
+                                    <input type="number" id="roi-final" placeholder="150000" value="150000">
+                                </div>
+                                <button class="calc-btn" onclick="calculateROI()">Calculate ROI</button>
+                            </div>
+                            
+                            <div class="result-section" id="roi-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>ROI</h4>
+                                    <p class="result-value" id="roi-percentage">0%</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Gain/Loss</h4>
+                                    <p class="result-value" id="roi-gain">₹0</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('roi')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('roi')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('profit')">Profit</a>
+                                <a href="#" onclick="switchCalculator('sip')">SIP</a>
+                            </div>
+                        </div>
+
+                        <!-- Salary Calculator -->
+                        <div class="calculator-card" data-calculator="salary">
+                            <h3 class="calc-title">Salary Calculator</h3>
+                            <p class="calc-description">Calculate take-home salary after tax</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Annual Gross Salary (₹)</label>
+                                    <input type="number" id="salary-gross" placeholder="1200000" value="1200000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Standard Deduction (₹)</label>
+                                    <input type="number" id="salary-deduction" placeholder="50000" value="50000">
+                                </div>
+                                <div class="input-group">
+                                    <label>80C Deductions (₹)</label>
+                                    <input type="number" id="salary-80c" placeholder="150000" value="150000">
+                                </div>
+                                <button class="calc-btn" onclick="calculateSalary()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="salary-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Annual Tax</h4>
+                                    <p class="result-value" id="salary-tax">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Take Home (Annual)</h4>
+                                    <p class="result-value" id="salary-takehome">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Monthly Take Home</h4>
+                                    <p class="result-value" id="salary-monthly">₹0</p>
+                                </div>
+                                <canvas id="salary-chart"></canvas>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('salary')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('salary')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('retirement')">Retirement</a>
+                            </div>
+                        </div>
+
+                        <!-- Retirement Calculator -->
+                        <div class="calculator-card" data-calculator="retirement">
+                            <h3 class="calc-title">Retirement Calculator</h3>
+                            <p class="calc-description">Plan your retirement corpus</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Current Age (years)</label>
+                                    <input type="number" id="retirement-age" placeholder="30" value="30">
+                                </div>
+                                <div class="input-group">
+                                    <label>Retirement Age (years)</label>
+                                    <input type="number" id="retirement-target-age" placeholder="60" value="60">
+                                </div>
+                                <div class="input-group">
+                                    <label>Monthly Expense Today (₹)</label>
+                                    <input type="number" id="retirement-expense" placeholder="50000" value="50000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Expected Return (% p.a.)</label>
+                                    <input type="number" id="retirement-return" placeholder="10" value="10" step="0.1">
+                                </div>
+                                <div class="input-group">
+                                    <label>Inflation Rate (% p.a.)</label>
+                                    <input type="number" id="retirement-inflation" placeholder="6" value="6" step="0.1">
+                                </div>
+                                <button class="calc-btn" onclick="calculateRetirement()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="retirement-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Corpus Required</h4>
+                                    <p class="result-value" id="retirement-corpus">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Monthly Investment</h4>
+                                    <p class="result-value" id="retirement-monthly">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Years to Retire</h4>
+                                    <p class="result-value" id="retirement-years">0</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('retirement')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('retirement')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('sip')">SIP</a>
+                                <a href="#" onclick="switchCalculator('salary')">Salary</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- DAILY LIFE CALCULATORS -->
+                    <section class="category-section" data-category="daily">
+                        <h2 class="category-title">🌟 Daily Life Calculators</h2>
+                        
+                        <!-- Fuel Calculator -->
+                        <div class="calculator-card" data-calculator="fuel">
+                            <h3 class="calc-title">Fuel Calculator</h3>
+                            <p class="calc-description">Calculate fuel cost and mileage</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Distance (km)</label>
+                                    <input type="number" id="fuel-distance" placeholder="100" value="100">
+                                </div>
+                                <div class="input-group">
+                                    <label>Mileage (km/l)</label>
+                                    <input type="number" id="fuel-mileage" placeholder="15" value="15">
+                                </div>
+                                <div class="input-group">
+                                    <label>Fuel Price (₹/l)</label>
+                                    <input type="number" id="fuel-price" placeholder="100" value="100">
+                                </div>
+                                <button class="calc-btn" onclick="calculateFuel()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="fuel-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Fuel Needed</h4>
+                                    <p class="result-value" id="fuel-needed">0 L</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Cost</h4>
+                                    <p class="result-value" id="fuel-cost">₹0</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('fuel')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('fuel')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('discount')">Discount</a>
+                            </div>
+                        </div>
+
+                        <!-- Discount Calculator -->
+                        <div class="calculator-card" data-calculator="discount">
+                            <h3 class="calc-title">Discount Calculator</h3>
+                            <p class="calc-description">Calculate discounted price and savings</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Original Price (₹)</label>
+                                    <input type="number" id="discount-original" placeholder="1000" value="1000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Discount (%)</label>
+                                    <input type="number" id="discount-percent" placeholder="20" value="20">
+                                </div>
+                                <button class="calc-btn" onclick="calculateDiscount()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="discount-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Final Price</h4>
+                                    <p class="result-value" id="discount-final">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>You Save</h4>
+                                    <p class="result-value" id="discount-savings">₹0</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('discount')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('discount')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('percentage')">Percentage</a>
+                                <a href="#" onclick="switchCalculator('gst')">GST</a>
+                            </div>
+                        </div>
+
+                        <!-- Recipe Calculator -->
+                        <div class="calculator-card" data-calculator="recipe">
+                            <h3 class="calc-title">Recipe Converter</h3>
+                            <p class="calc-description">Scale recipe ingredients</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Original Servings</label>
+                                    <input type="number" id="recipe-original" placeholder="4" value="4">
+                                </div>
+                                <div class="input-group">
+                                    <label>Desired Servings</label>
+                                    <input type="number" id="recipe-desired" placeholder="8" value="8">
+                                </div>
+                                <button class="calc-btn" onclick="calculateRecipe()">Calculate Ratio</button>
+                            </div>
+                            
+                            <div class="result-section" id="recipe-result" style="display:none;">
+                                <div class="result-card full-width">
+                                    <h4>Multiply All Ingredients By</h4>
+                                    <p class="result-value" id="recipe-ratio">0x</p>
+                                    <small>Use this multiplier for all ingredients</small>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('recipe')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('recipe')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('percentage')">Percentage</a>
+                            </div>
+                        </div>
+
+                        <!-- Tip Calculator -->
+                        <div class="calculator-card" data-calculator="tip">
+                            <h3 class="calc-title">Tip Calculator</h3>
+                            <p class="calc-description">Calculate tip and split bill</p>
+                            
+                            <div class="calc-form">
+                                <div class="input-group">
+                                    <label>Bill Amount (₹)</label>
+                                    <input type="number" id="tip-bill" placeholder="1000" value="1000">
+                                </div>
+                                <div class="input-group">
+                                    <label>Tip Percentage (%)</label>
+                                    <input type="number" id="tip-percent" placeholder="10" value="10">
+                                </div>
+                                <div class="input-group">
+                                    <label>Number of People</label>
+                                    <input type="number" id="tip-people" placeholder="4" value="4">
+                                </div>
+                                <button class="calc-btn" onclick="calculateTip()">Calculate</button>
+                            </div>
+                            
+                            <div class="result-section" id="tip-result" style="display:none;">
+                                <div class="result-card">
+                                    <h4>Tip Amount</h4>
+                                    <p class="result-value" id="tip-amount">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Total Bill</h4>
+                                    <p class="result-value" id="tip-total">₹0</p>
+                                </div>
+                                <div class="result-card">
+                                    <h4>Per Person</h4>
+                                    <p class="result-value" id="tip-per-person">₹0</p>
+                                </div>
+                                <div class="result-actions">
+                                    <button class="copy-btn" onclick="copyResult('tip')">📋 Copy</button>
+                                    <button class="download-btn" onclick="downloadResult('tip')">💾 Download</button>
+                                </div>
+                            </div>
+                            
+                            <div class="related-calcs">
+                                <span>Related:</span>
+                                <a href="#" onclick="switchCalculator('discount')">Discount</a>
+                                <a href="#" onclick="switchCalculator('percentage')">Percentage</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Ad Space Between Sections -->
+                    <div class="ad-space section-ad">
+                        <div class="ad-placeholder">Advertisement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="ad-space footer-ad">
+            <div class="ad-placeholder">Advertisement</div>
+        </div>
+        
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CalcKit</h4>
+                    <p>Your all-in-one calculator for Finance, Health, Education, Business & Daily Life.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="navigateToCategory('finance')">Finance Calculators</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateToCategory('education')">Education Calculators</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateToCategory('health')">Health Calculators</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateToCategory('business')">Business Calculators</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateToCategory('daily')">Daily Life Calculators</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="openModal('history')">Calculation History</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('favorites')">Favorites</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('privacy')">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('contact')">Contact Us</a></li>
+                        <li><a href="javascript:void(0)" onclick="clearAllData()">Clear All Data</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Get calculator tips & updates</p>
+                    <div class="newsletter-form">
+                        <input type="email" id="newsletter-email" placeholder="Your email" class="newsletter-input">
+                        <button onclick="subscribeNewsletter()" class="newsletter-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CalcKit. All rights reserved. Made with ❤️ for India</p>
+                <p class="footer-stats">
+                    <span id="total-calculations">0 calculations</span> performed by <span id="total-users">1,250+ users</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for History, Favorites, etc. -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="fab" id="fab-main" onclick="toggleFabMenu()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+        </button>
+        <div class="fab-menu" id="fab-menu">
+            <button class="fab-item" onclick="openModal('history')" title="History">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                    <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12zm1-9H9v5l4 2 1-1-3-2V7z"/>
+                </svg>
+            </button>
+            <button class="fab-item" onclick="openModal('favorites')" title="Favorites">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+            </button>
+            <button class="fab-item" onclick="exportAllResults()" title="Export">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                    <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+                </svg>
+            </button>
+            <button class="fab-item" onclick="scrollToTop()" title="Scroll to Top">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                    <path d="M10 4l-8 8 1.5 1.5L10 7l6.5 6.5L18 12l-8-8z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Quick Calculator Popup -->
+    <div id="quick-calc" class="quick-calc">
+        <div class="quick-calc-header">
+            <h4>Quick Calculator</h4>
+            <button onclick="closeQuickCalc()">&times;</button>
+        </div>
+        <input type="text" id="quick-calc-input" placeholder="Enter expression (e.g., 150*12+500)">
+        <div class="quick-calc-result" id="quick-calc-result">= 0</div>
+        <div class="quick-calc-buttons">
+            <button onclick="quickCalc('7')">7</button>
+            <button onclick="quickCalc('8')">8</button>
+            <button onclick="quickCalc('9')">9</button>
+            <button onclick="quickCalc('/')">/</button>
+            <button onclick="quickCalc('4')">4</button>
+            <button onclick="quickCalc('5')">5</button>
+            <button onclick="quickCalc('6')">6</button>
+            <button onclick="quickCalc('*')">×</button>
+            <button onclick="quickCalc('1')">1</button>
+            <button onclick="quickCalc('2')">2</button>
+            <button onclick="quickCalc('3')">3</button>
+            <button onclick="quickCalc('-')">-</button>
+            <button onclick="quickCalc('0')">0</button>
+            <button onclick="quickCalc('.')">.</button>
+            <button onclick="quickCalc('=')">=</button>
+            <button onclick="quickCalc('+')">+</button>
+            <button onclick="quickCalcClear()" class="span-2">Clear</button>
+            <button onclick="closeQuickCalc()" class="span-2">Close</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="calculators.js"></script>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</body>
+</html>
+
