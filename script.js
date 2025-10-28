@@ -839,3 +839,79 @@ console.log('   Ctrl/Cmd + H: History');
 console.log('   Ctrl/Cmd + Q: Quick Calculator');
 console.log('   Escape: Close modals');
 
+/* ========================================
+   AD MANAGEMENT - PREVENT LAYOUT SHIFT
+   ======================================== */
+
+// Handle AdSense load status
+document.addEventListener('DOMContentLoaded', () => {
+    // Observe all ad spaces
+    const adSpaces = document.querySelectorAll('.ad-space');
+    
+    adSpaces.forEach(adSpace => {
+        // Create observer to detect if ad loaded
+        const observer = new MutationObserver((mutations) => {
+            const hasContent = adSpace.querySelector('.adsbygoogle')?.getAttribute('data-ad-status');
+            if (hasContent === 'filled' || adSpace.querySelector('.adsbygoogle ins')?.offsetHeight > 0) {
+                adSpace.setAttribute('data-ad-status', 'loaded');
+            } else if (hasContent === 'unfilled') {
+                adSpace.setAttribute('data-ad-status', 'empty');
+            }
+        });
+        
+        observer.observe(adSpace, {
+            childList: true,
+            subtree: true,
+            attributes: true
+        });
+    });
+    
+    // Fallback: Check after 3 seconds if ads loaded
+    setTimeout(() => {
+        adSpaces.forEach(adSpace => {
+            const adElement = adSpace.querySelector('.adsbygoogle');
+            if (adElement) {
+                const isLoaded = adElement.offsetHeight > 0;
+                if (isLoaded) {
+                    adSpace.setAttribute('data-ad-status', 'loaded');
+                } else {
+                    adSpace.setAttribute('data-ad-status', 'empty');
+                }
+            }
+        });
+    }, 3000);
+});
+
+// Track affiliate link clicks
+document.querySelectorAll('.affiliate-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        const product = this.closest('.affiliate-product')?.getAttribute('data-product');
+        
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'affiliate_click', {
+                'product_type': product,
+                'link_url': this.href
+            });
+        }
+        
+        saveToHistory('affiliate_click', {
+            product: product,
+            url: this.href,
+            timestamp: new Date().toISOString()
+        });
+    });
+});
+
+// Lazy load images (if any added later)
+if ('loading' in HTMLImageElement.prototype) {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+        img.src = img.dataset.src;
+    });
+} else {
+    // Fallback for browsers that don't support lazy loading
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+    document.body.appendChild(script);
+}
+
