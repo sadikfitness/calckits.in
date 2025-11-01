@@ -2,6 +2,23 @@
    CalcKit - Main JavaScript
    ======================================== */
 
+// SCROLL BLOCKING REMOVER 
+document.addEventListener('DOMContentLoaded', function() { 
+    // Remove any overflow hidden from all elements 
+    document.querySelectorAll('*').forEach(element => { 
+        const style = window.getComputedStyle(element); 
+        if (style.overflow === 'hidden' || style.overflowY === 'hidden') { 
+            element.style.overflow = 'visible'; 
+            element.style.overflowY = 'auto'; 
+        } 
+    }); 
+    
+    // Force enable scrolling 
+    document.body.style.overflow = 'auto'; 
+    document.body.style.overflowX = 'hidden'; 
+    document.documentElement.style.overflow = 'auto'; 
+});
+
 // Theme Management
 const themeToggle = document.getElementById('themeToggle');
 const htmlElement = document.documentElement;
