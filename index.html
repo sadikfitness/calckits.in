@@ -28,6 +28,10 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
     
+    <!-- Google AdSense -->
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5968469592824693" crossorigin="anonymous"></script>
+    
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
     
@@ -49,6 +53,9 @@
     </script>
 </head>
 <body>
+    <amp-auto-ads type="adsense" data-ad-client="ca-pub-5968469592824693">
+    </amp-auto-ads>
+    
     <!-- Hidden SEO Content -->
     <div class="seo-rich-content" style="position: absolute; left: -9999px;">
         <h1>Free Online Calculators - CalcKits.in</h1>
@@ -73,6 +80,12 @@
                     <span class="logo-text">CalcKit</span>
                 </div>
                 
+                <button id="menuToggle" class="menu-toggle" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
                 <div class="search-container">
                     <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
@@ -91,6 +104,19 @@
                     </svg>
                 </button>
             </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="mobile-nav">
+            <nav>
+                <ul>
+                    <li><a href="#finance">Finance</a></li>
+                    <li><a href="#health">Health</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#business">Business</a></li>
+                    <li><a href="#daily">Daily Life</a></li>
+                </ul>
+            </nav>
         </div>
         
         <!-- ADSENSE HEADER BANNER -->

@@ -17,6 +17,34 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = 'auto'; 
     document.body.style.overflowX = 'hidden'; 
     document.documentElement.style.overflow = 'auto'; 
+    
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if (menuToggle && mobileNav) {
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            
+            // Track menu toggle in analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'mobile_menu_toggle', {
+                    'event_category': 'navigation',
+                    'event_label': mobileNav.classList.contains('active') ? 'open' : 'close'
+                });
+            }
+        });
+        
+        // Close menu when clicking on a link
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+    }
 });
 
 // Theme Management
