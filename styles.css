@@ -8,37 +8,49 @@
     box-sizing: border-box;
 }
 
-/* SCROLL BLOCKING FIX */ 
-html, body { 
-    overflow-x: hidden !important; 
-    overflow-y: auto !important; 
-    height: auto !important; 
-    max-height: none !important; 
-    position: relative !important; 
-} 
+/* Prevent Horizontal Scroll */
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
-/* REMOVE ALL OVERFLOW HIDDEN */ 
-.container, .main-content, .calculator-grid, section, div { 
-    overflow: visible !important; 
-    max-height: none !important; 
-} 
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  /* Mobile scroll fix */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto !important;
+  }
+  .container {
+    overflow: visible !important;
+  }
+}
 
-/* SMOOTH SCROLL */ 
-html { 
-    scroll-behavior: smooth; 
-    scroll-padding-top: 80px; 
-} 
+@media (min-width: 769px) {
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
 
-/* FIX SCROLLBAR */ 
-::-webkit-scrollbar { 
-    width: 8px; 
-} 
-::-webkit-scrollbar-track { 
-    background: #f1f5f9; 
-} 
-::-webkit-scrollbar-thumb { 
-    background: #2563eb; 
-    border-radius: 10px; 
+/* Make all sections, buttons, inputs and calculator boxes flexible */
+section, div {
+  overflow-x: hidden;
+}
+
+button, input, select, textarea, .calculator-card {
+  width: 100%;
+  max-width: 100%;
 }
 
 :root {
@@ -445,23 +457,6 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    .calculator-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    /* MOBILE SCROLL FIX */ 
-    body { 
-        -webkit-overflow-scrolling: touch; 
-        overflow-y: auto !important; 
-    } 
-    
-    .container { 
-        overflow: visible !important; 
-    } 
-}
-
 .calculator-area {
     min-height: 500px;
 }
@@ -520,8 +515,6 @@ body {
     transition: all 0.3s ease;
     width: 100%;
     min-height: auto;
-    display: flex;
-    flex-direction: column;
 }
 
 @media (min-width: 769px) {
